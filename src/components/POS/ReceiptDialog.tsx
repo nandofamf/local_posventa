@@ -45,7 +45,7 @@ const ReceiptDialog: React.FC<Props> = ({
   const efectivo = paymentMethod === "Efectivo" ? (cashGiven ?? 0) : 0;
   const cambio = paymentMethod === "Efectivo" ? Math.max(0, (cashGiven ?? 0) - total) : 0;
 
-  const TITULO = "PRE-BOLETA";
+  
   const EMPRESA = "OLAYO'S";
   const DIREC = "Maipú 470 - Local 15, Concepción";
 
@@ -63,7 +63,7 @@ const ReceiptDialog: React.FC<Props> = ({
     const L: string[] = [];
 
     // Encabezado centrado
-    L.push(center(TITULO));
+  
     L.push(center(EMPRESA));
     L.push(center(DIREC));
     L.push(line("-"));

@@ -13,7 +13,6 @@ export const Receipt = forwardRef<HTMLDivElement, ReceiptProps>(
     return (
       <div ref={ref} className="bg-white p-8 max-w-md mx-auto text-black">
         <div className="text-center mb-6">
-          <h1 className="text-2xl font-bold">PRE-BOLETA</h1>
           <h1 className="text-2xl font-bold">Olayo's</h1>
           <p className="text-sm text-gray-600 mt-2">{date}</p>
           <p className="text-sm text-gray-600 mt-2">Maipu 470, local 15, Concepción</p>
