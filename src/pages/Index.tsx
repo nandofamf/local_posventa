@@ -4,7 +4,7 @@ import { database } from "@/lib/firebase";
 import { Product, CartItem } from "@/types/product";
 import { BarcodeScanner } from "@/components/POS/BarcodeScanner";
 import Cart from "@/components/POS/Cart";
-import { ProductList } from "@/components/POS/ProductList";
+import ProductList from "@/components/POS/ProductList";
 import ReceiptDialog from "@/components/POS/ReceiptDialog";
 import { toast } from "@/hooks/use-toast";
 
@@ -206,7 +206,8 @@ const Index = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 space-y-6">
           <BarcodeScanner onScan={handleScan} />
-          <ProductList products={products} onAddToCart={addToCart} />
+          <ProductList products={products} onAdd={addToCart} />
+
         </div>
 
         <div className="lg:col-span-1">

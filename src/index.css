@@ -2,24 +2,95 @@
 @tailwind components;
 @tailwind utilities;
 
+/* -------------------------
+   Variables base del tema
+-------------------------- */
 @layer base {
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 47.4% 11.2%;
+
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
+
     --primary: 221.2 83.2% 53.3%;
     --primary-foreground: 210 40% 98%;
+
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
+
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
+
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
+
     --ring: 221.2 83.2% 53.3%;
+
     --radius: 0.5rem;
   }
 
   * { @apply border-border; }
   body { @apply bg-background text-foreground; }
+}
+
+/* -------------------------
+   Componentes utilitarios POS
+-------------------------- */
+@layer components {
+  /* Secciones (paneles) */
+  .pos-section { @apply rounded-xl border bg-card p-4 shadow-sm; }
+  .pos-title   { @apply text-lg font-bold mb-2; }
+
+  /* Barra superior de filtros/búsqueda */
+  .pos-toolbar { @apply flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-3; }
+  .pos-search  { @apply relative w-full sm:max-w-md; }
+  .pos-search-input { @apply pl-9; } /* para inputs con icono a la izquierda */
+
+  /* Tarjeta de producto */
+  .pos-card {
+    @apply relative rounded-xl border bg-background p-4 shadow-sm transition hover:shadow-lg cursor-pointer;
+  }
+
+  /* Badge de bajo stock */
+  .pos-low-pill {
+    @apply absolute right-3 top-3 rounded-full bg-amber-100 px-2 py-0.5 text-xs font-semibold text-amber-700;
+  }
+
+  /* Inputs con focus visible consistente */
+  .pos-input {
+    @apply focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+  }
+}
+
+/* -------------------------
+   Estilos de impresión Ticket (58–80mm)
+   Usa #printable como contenedor del contenido a imprimir
+-------------------------- */
+@media print {
+  /* Ticket de 80 mm; si usas 58 mm cambia a 58mm */
+  @page { size: 80mm auto; margin: 0; }
+
+  html, body {
+    width: 80mm;
+    background: #fff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Ocultar todo y mostrar solo lo del contenedor */
+  body * { visibility: hidden; }
+  #printable, #printable * { visibility: visible; }
+
+  /* Posicionar el contenedor al origen */
+  #printable { position: absolute; left: 0; top: 0; width: 80mm; padding: 6px 8px; }
+
+  /* Utilidades de ticket */
+  .ticket       { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 9pt; line-height: 1.2; }
+  .ticket-8     { font-size: 8pt; }
+  .ticket-85    { font-size: 8.5pt; }
+  .ticket-9     { font-size: 9pt; }
+  .ticket-center{ text-align: center; }
+  .ticket-row   { display: flex; justify-content: space-between; gap: 4px; }
+  .ticket-hr    { border-top: 1px dashed #000; margin: 6px 0; }
 }
